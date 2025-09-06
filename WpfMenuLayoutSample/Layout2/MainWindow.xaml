@@ -1,0 +1,213 @@
+﻿<Window x:Class="Layout2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Layout2"
+        mc:Ignorable="d"
+        Title="上部メニュー + サイドメニューレイアウト" Height="700" Width="1200"
+        Background="#F5F5F5" WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        <Style x:Key="TopMenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="BorderElement" Background="{TemplateBinding Background}" 
+                                CornerRadius="6" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E8F4FD"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#D0E7FF"/>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                                <Setter Property="Background" Value="#2196F3"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SideMenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="25,12,20,12"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="6" Margin="12,2,8,2">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="Center"
+                                            Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E8F4FD"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#D0E7FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ContentAreaStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#000000" Opacity="0.1" BlurRadius="10" ShadowDepth="2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 上部メニューエリア -->
+        <Border Grid.Row="0" Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+            <Border.Effect>
+                <DropShadowEffect Color="#000000" Opacity="0.05" BlurRadius="8" ShadowDepth="2"/>
+            </Border.Effect>
+            
+            <Grid Height="70">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- ロゴ/タイトル部分 -->
+                <Border Grid.Column="0" Background="#2196F3" Width="280" Margin="0">
+                    <TextBlock Text="Navigation Sample" 
+                             Foreground="White" 
+                             FontSize="18" 
+                             FontWeight="SemiBold"
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Center"/>
+                </Border>
+
+                <!-- グループ選択メニュー -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" 
+                           VerticalAlignment="Center" Margin="30,0">
+                    <Button Name="btnTopGroupA" Content="グループA" Style="{StaticResource TopMenuButtonStyle}" 
+                            Click="SelectTopGroup" Tag="False"/>
+                    <Button Name="btnTopGroupB" Content="グループB" Style="{StaticResource TopMenuButtonStyle}" 
+                            Click="SelectTopGroup" Tag="False"/>
+                    <Button Name="btnTopGroupC" Content="グループC" Style="{StaticResource TopMenuButtonStyle}" 
+                            Click="SelectTopGroup" Tag="False"/>
+                    <Button Name="btnTopGroupAdmin" Content="管理機能" Style="{StaticResource TopMenuButtonStyle}" 
+                            Click="SelectTopGroup" Tag="False"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- メイン部分 -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- サイドメニュー -->
+            <Border Grid.Column="0" Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,1,0">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" Opacity="0.05" BlurRadius="8" ShadowDepth="2"/>
+                </Border.Effect>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- 選択中グループ表示 -->
+                    <Border Grid.Row="0" Background="#F8F9FA" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" 
+                            Height="50">
+                        <TextBlock Name="txtSelectedGroup" Text="グループを選択してください" 
+                                 FontSize="14" FontWeight="SemiBold" Foreground="#666666"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <!-- サイドメニューリスト -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Name="sideMenuPanel" Margin="0,20,0,0">
+                            <!-- 初期状態では何も表示されない -->
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- メインコンテンツエリア -->
+            <Border Grid.Column="1" Style="{StaticResource ContentAreaStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- ヘッダー部分 -->
+                    <Border Grid.Row="0" Background="#FAFAFA" CornerRadius="12,12,0,0" Padding="30,20">
+                        <StackPanel>
+                            <TextBlock Name="txtCurrentScreen" Text="ホーム画面" FontSize="24" FontWeight="SemiBold" Foreground="#333333"/>
+                            <TextBlock Text="上部メニューからグループを選択し、左のサイドメニューから画面を選択してください" FontSize="14" Foreground="#666666" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- コンテンツ部分 -->
+                    <Border Grid.Row="1" Padding="30">
+                        <StackPanel Name="contentArea">
+                            <TextBlock Text="上部メニューからグループを選択してください。" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#999999"/>
+                            
+                            <!-- サンプルコンテンツ（初期表示用） -->
+                            <Border Background="#F8F9FA" CornerRadius="8" Padding="20" Margin="0,30,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="📋 機能概要" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,15"/>
+                                    <TextBlock TextWrapping="Wrap" LineHeight="24" Foreground="#555555">
+                                        <Run Text="• 上部に4つのグループ選択メニューがあります（A、B、C、管理機能）"/>
+                                        <LineBreak/>
+                                        <Run Text="• グループを選択すると、左サイドバーにそのグループの画面メニューが表示されます"/>
+                                        <LineBreak/>
+                                        <Run Text="• サイドバーのメニューをクリックすると対応する画面に遷移します"/>
+                                        <LineBreak/>
+                                        <Run Text="• 一部の画面では「子画面表示」ボタンでモーダルダイアログを開けます"/>
+                                        <LineBreak/>
+                                        <Run Text="• 階層化されたナビゲーションでより使いやすいUIを実現しています"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

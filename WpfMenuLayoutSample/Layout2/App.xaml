@@ -1,0 +1,49 @@
+﻿<Application x:Class="Layout2.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Layout2"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!-- 共通ボタンスタイル -->
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1976D2"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#0D47A1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- モーダルボタン用スタイル（ActionButtonStyleを継承） -->
+        <Style x:Key="ModalButtonStyle" TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+            <Setter Property="Background" Value="#FF9800"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F57C00"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#E65100"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Application.Resources>
+</Application>
