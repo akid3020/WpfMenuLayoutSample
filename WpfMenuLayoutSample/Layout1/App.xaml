@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:Layout1"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!--テキストボックススタイル-->
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="4" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+
         <!-- 共通ボタンスタイル -->
         <Style x:Key="ActionButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#2196F3"/>

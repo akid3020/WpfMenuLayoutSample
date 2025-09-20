@@ -14,17 +14,17 @@ namespace Layout1
 {
     public class ScreenInfo
     {
-        public string Title { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
-        public Func<UserControl> ViewFactory { get; set; } = () => new BasicScreenView();
+        public required string Title { get; init; }
+        public required string Description { get; init; }
+        public required Func<UserControl> ViewFactory { get; init; }
     }
 
     public class MenuGroup
     {
-        public string Name { get; set; } = string.Empty;
-        public Button GroupButton { get; set; } = null!;
-        public StackPanel Panel { get; set; } = null!;
-        public bool IsExpanded { get; set; } = true;
+        public required string Name { get; init; }
+        public required Button GroupButton { get; init; }
+        public required StackPanel Panel { get; init; }
+        public required bool IsExpanded { get; set; }
     }
 
     public partial class MainWindow : Window
@@ -240,8 +240,7 @@ namespace Layout1
             if (sender is not Button groupButton) return;
             
             var buttonName = groupButton.Name;
-            if (!_menuGroups.TryGetValue(buttonName, out var menuGroup))
-                return;
+            if (!_menuGroups.TryGetValue(buttonName, out var menuGroup)) return;
 
             var isExpanded = groupButton.Tag is bool expanded && expanded;
             var newExpandedState = !isExpanded;

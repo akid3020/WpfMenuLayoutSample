@@ -229,8 +229,6 @@
                                     <Run Text="• 各メニューをクリックすると対応する画面に遷移します"/>
                                     <LineBreak/>
                                     <Run Text="• 一部の画面では「子画面表示」ボタンでモーダルダイアログを開けます"/>
-                                    <LineBreak/>
-                                    <Run Text="• モダンなデザインと使いやすいナビゲーションを実現しています"/>
                                 </TextBlock>
                             </StackPanel>
                         </Border>

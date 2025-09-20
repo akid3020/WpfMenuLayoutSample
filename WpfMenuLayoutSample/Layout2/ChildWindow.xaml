@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Layout2"
         mc:Ignorable="d"
-        Title="子画面" Height="400" Width="600"
+        Title="子画面" Width="600"
+        SizeToContent="Height"
         Background="#F5F5F5" WindowStartupLocation="CenterOwner"
         ResizeMode="CanResize">
     
@@ -58,14 +59,14 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="名前:" VerticalAlignment="Center" Margin="0,0,15,15" FontWeight="SemiBold"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" Name="txtName" Height="30" Margin="0,0,0,15" Padding="8" BorderBrush="#CCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Name="txtName" Height="30" Margin="0,0,0,15" />
 
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="メールアドレス:" VerticalAlignment="Center" Margin="0,0,15,15" FontWeight="SemiBold"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" Name="txtEmail" Height="30" Margin="0,0,0,15" Padding="8" BorderBrush="#CCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Name="txtEmail" Height="30" Margin="0,0,0,15" />
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="説明:" VerticalAlignment="Top" Margin="0,8,15,15" FontWeight="SemiBold"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" Name="txtDescription" Height="80" Margin="0,0,0,15" Padding="8" 
-                             BorderBrush="#CCCCCC" BorderThickness="1" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Name="txtDescription" Height="80" Margin="0,0,0,15"  
+                             TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
 
                     <CheckBox Grid.Row="3" Grid.Column="1" Name="chkAgree" Content="利用規約に同意する" Margin="0,10,0,0"/>
                 </Grid>
